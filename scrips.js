@@ -1,68 +1,119 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+document.addEventListener('DOMContentLoaded', () => {
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
 
-header {
-    background-color: #4CAF50;
-    color: white;
-    padding: 1rem;
-    text-align: center;
-}
+    let dino = {
+        x: 50,
+        y: canvas.height - 40,
+        width: 20,
+        height: 40,
+        vy: 0,
+        gravity: 0.6,
+        jumpStrength: -12,
+        grounded: true
+    };
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    background-color: #333;
-}
+    let obstacles = [];
+    let frame = 0;
+    let gameSpeed = 3;
+    let keys = {};
 
-nav ul li {
-    margin: 0 1rem;
-}
+    document.addEventListener('keydown', (e) => {
+        keys[e.code] = true;
+    });
 
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 1rem;
-    display: block;
-}
+    document.addEventListener('keyup', (e) => {
+        keys[e.code] = false;
+    });
 
-nav ul li a:hover {
-    background-color: #575757;
-}
+    function spawnObstacle() {
+        let obstacle = {
+            x: canvas.width,
+            y: canvas.height - 30,
+            width: 20,
+            height: 30
+        };
+        obstacles.push(obstacle);
+    }
 
-main {
-    padding: 2rem;
-}
+    function handleObstacles() {
+        for (let i = 0; i < obstacles.length; i++) {
+            let obs = obstacles[i];
+            obs.x -= gameSpeed;
 
-section {
-    margin-bottom: 2rem;
-}
+            if (obs.x + obs.width < 0) {
+                obstacles.splice(i, 1);
+                i--;
+            }
 
-footer {
-    text-align: center;
-    padding: 1rem;
-    background-color: #4CAF50;
-    color: white;
-}
+            if (dino.x < obs.x + obs.width &&
+                dino.x + dino.width > obs.x &&
+                dino.y < obs.y + obs.height &&
+                dino.y + dino.height > obs.y) {
+                resetGame();
+            }
+        }
+    }
 
-#subscribe-button {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 1rem 2rem;
-    cursor: pointer;
-}
+    function resetGame() {
+        dino.y = canvas.height - 40;
+        dino.vy = 0;
+        dino.grounded = true;
+        obstacles = [];
+        frame = 0;
+    }
 
-#subscribe-button:hover {
-    background-color: #45a049;
-}
+    function gameLoop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-#game-container {
-    text-align: center;
-    margin: 0 auto;
-}
+        dino.vy += dino.gravity;
+        dino.y += dino.vy;
+
+        if (dino.y + dino.height >= canvas.height - 10) {
+            dino.y = canvas.height - 10 - dino.height;
+            dino.vy = 0;
+            dino.grounded = true;
+        }
+
+        if (keys['Space'] && dino.grounded) {
+            dino.vy = dino.jumpStrength;
+            dino.grounded = false;
+        }
+
+        ctx.fillStyle = 'black';
+        ctx.fillRect(dino.x, dino.y, dino.width, dino.height);
+
+        frame++;
+        if (frame % 100 === 0) {
+            spawnObstacle();
+        }
+
+        handleObstacles();
+
+        ctx.fillStyle = 'green';
+        for (let i = 0; i < obstacles.length; i++) {
+            let obs = obstacles[i];
+            ctx.fillRect(obs.x, obs.y, obs.width, obs.height);
+        }
+
+        requestAnimationFrame(gameLoop);
+    }
+
+    gameLoop();
+
+    // Handle form submission
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for your message!');
+    });
+
+    // Handle newsletter subscription
+    const subscribeButton = document.getElementById('subscribe-button');
+    subscribeButton.addEventListener('click', () => {
+        const email = prompt('Enter your email to subscribe:');
+        if (email) {
+            alert('Thank you for subscribing!');
+        }
+    });
+});
