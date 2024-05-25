@@ -1,51 +1,68 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Load latest content
-    const latestContent = document.getElementById('latest-content');
-    latestContent.innerHTML = '<p>Check out our latest blog posts and forum discussions!</p>';
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    // Load blog posts
-    const blogPosts = document.getElementById('blog-posts');
-    blogPosts.innerHTML = `
-        <article>
-            <h3>Blog Post Title 1</h3>
-            <p>Excerpt from the blog post...</p>
-            <a href="#">Read more</a>
-        </article>
-        <article>
-            <h3>Blog Post Title 2</h3>
-            <p>Excerpt from the blog post...</p>
-            <a href="#">Read more</a>
-        </article>
-    `;
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
 
-    // Load forum content
-    const forumContent = document.getElementById('forum-content');
-    forumContent.innerHTML = `
-        <div>
-            <h3>Forum Topic 1</h3>
-            <p>Discussion excerpt...</p>
-            <a href="#">Join the discussion</a>
-        </div>
-        <div>
-            <h3>Forum Topic 2</h3>
-            <p>Discussion excerpt...</p>
-            <a href="#">Join the discussion</a>
-        </div>
-    `;
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #333;
+}
 
-    // Handle form submission
-    const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        alert('Thank you for your message!');
-    });
+nav ul li {
+    margin: 0 1rem;
+}
 
-    // Handle newsletter subscription
-    const subscribeButton = document.getElementById('subscribe-button');
-    subscribeButton.addEventListener('click', () => {
-        const email = prompt('Enter your email to subscribe:');
-        if (email) {
-            alert('Thank you for subscribing!');
-        }
-    });
-});
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 1rem;
+    display: block;
+}
+
+nav ul li a:hover {
+    background-color: #575757;
+}
+
+main {
+    padding: 2rem;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #4CAF50;
+    color: white;
+}
+
+#subscribe-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+}
+
+#subscribe-button:hover {
+    background-color: #45a049;
+}
+
+#game-container {
+    text-align: center;
+    margin: 0 auto;
+}
