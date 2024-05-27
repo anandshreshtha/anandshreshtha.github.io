@@ -21,10 +21,23 @@
     </header>
     <main>
         <section id="home">
-            <h2>Play T-Rex Dino Game</h2>
-            <div id="game-container">
-                <canvas id="gameCanvas" width="600" height="150"></canvas>
-            </div>
+            <div>
+    <canvas id="dino-canvas" width="600" height="150"></canvas>
+    <script src="https://chromedino.com/scripts/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const canvas = document.getElementById('dino-canvas');
+            const game = new Runner('.interstitial-wrapper');
+
+            window.addEventListener('keydown', function(event) {
+                if (event.code === 'Space') {
+                    game.onKeyDown({keyCode: 32});
+                }
+            });
+        });
+    </script>
+</div>
+
         </section>
         <section id="blog">
             <h2>Blog</h2>
