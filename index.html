@@ -3,64 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Engaging Website with Dino Game</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="game.js" defer></script>
+    <title>My Engaging Website</title>
+    <style>
+        /* Your existing CSS styles */
+    </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to My Engaging Website</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#forum">Forum</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+        <h1>Welcome to My Website</h1>
     </header>
     <main>
-        <section id="home">
-            <div>
-    <canvas id="dino-canvas" width="600" height="150"></canvas>
-    <script src="https://chromedino.com/scripts/main.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const canvas = document.getElementById('dino-canvas');
-            const game = new Runner('.interstitial-wrapper');
+        <p>This is some content on my webpage.</p>
+        <!-- Dino game integration -->
+        <div>
+            <canvas id="dino-canvas" width="600" height="150"></canvas>
+            <script src="https://chromedino.com/scripts/main.js"></script>
+            <script>
+                document.addEventListener('DOMContentLoaded', (event) => {
+                    const canvas = document.getElementById('dino-canvas');
+                    const game = new Runner('.interstitial-wrapper');
 
-            window.addEventListener('keydown', function(event) {
-                if (event.code === 'Space') {
-                    game.onKeyDown({keyCode: 32});
-                }
-            });
-        });
-    </script>
-</div>
-
-        </section>
-        <section id="blog">
-            <h2>Blog</h2>
-            <div id="blog-posts"></div>
-        </section>
-        <section id="forum">
-            <h2>Forum</h2>
-            <div id="forum-content"></div>
-        </section>
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <form id="contact-form">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-                <button type="submit">Send</button>
-            </form>
-        </section>
+                    window.addEventListener('keydown', function(event) {
+                        if (event.code === 'Space') {
+                            game.onKeyDown({keyCode: 32});
+                        }
+                    });
+                });
+            </script>
+        </div>
+        <!-- End of Dino game integration -->
     </main>
     <footer>
-        <p>&copy; 2024 My Engaging Website</p>
-        <button id="subscribe-button">Subscribe to Newsletter</button>
+        <p>Contact us: info@example.com</p>
     </footer>
 </body>
 </html>
