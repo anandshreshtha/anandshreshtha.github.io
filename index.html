@@ -3,15 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Think Nex</title>
-    <style>
-        /* Your existing CSS styles */
-        iframe {
-            width: 100%;
-            height: 600px; /* Adjust the height as needed */
-            border: none;
-        }
-    </style>
+    <title>Think Nex - T-Rex Dino Game</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -20,11 +13,19 @@
     <main>
         <p>TREX.DINO GAME</p>
         <!-- Dino game integration -->
-        <iframe src="https://chromedino.com/" loading="lazy"></iframe>
+        <div id="offline-resources">
+            <div class="interstitial-wrapper">
+                <div id="main-content">
+                    <canvas id="offline-resources-canvas" width="600" height="150"></canvas>
+                </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
         <!-- End of Dino game integration -->
     </main>
     <footer>
-        <p>Contact us: anandshrestha66@gmail.com</p>
+        <p>Contact us: thinknex@gmail.com</p>
     </footer>
 </body>
 </html>
+
