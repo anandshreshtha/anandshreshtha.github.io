@@ -14,7 +14,7 @@ class Runner {
         this.draw();
     }
 
-    draw() {
+    draw() { 
         const sourceX = 848;
         const sourceY = 0;
         const sourceWidth = 44;
